@@ -1,0 +1,59 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:FirstCutMVVM.ViewModel"
+        mc:Ignorable="d" d:DesignWidth="1600" d:DesignHeight="900"
+        x:Class="FirstCutMVVM.MainWindow"
+        Title="FirstCutMVVM">
+
+    <Window.DataContext>
+        <viewModel:MainWindowViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <TabControl>
+            <TabItem Header="Пользователи">
+                <Grid Margin="0">
+                    <DataGrid Name="UsersList" Width="1300" Height="600" HorizontalAlignment="Center"
+                              VerticalAlignment="Center" IsReadOnly="True" AutoGenerateColumns="False"
+                              Items="{Binding UsersList}" >
+                              <!-- DoubleTapped="UsersListOnDoubleTapped"> -->
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Fio}" Header="ФИО" Width="*" />
+                            <DataGridTextColumn Binding="{Binding DateOfBirth}" Header="Дата рождения" Width="0.5*" />
+                            <DataGridTextColumn Binding="{Binding PhoneNumber}" Header="Номер телефона" Width="0.5*" />
+                            <DataGridTextColumn Binding="{Binding Address}" Header="Адрес проживания" Width="*" />
+                            <DataGridTextColumn Binding="{Binding IdcountryNavigation.Name}" Header="Адрес проживания"
+                                                Width="*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content="Добавить" Width="100" Height="30" HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom" Margin="50" HorizontalContentAlignment="Center"
+                            Command="{Binding AddUserButtonClick}" />
+                    <Label Name="UserCheque" Width="500" Height="30" HorizontalAlignment="Center"
+                           VerticalAlignment="Top" Margin="0" HorizontalContentAlignment="Center" BorderBrush="Black"
+                           BorderThickness="1" Content="{Binding UserCheque}" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Страны">
+                <Grid>
+                    <DataGrid Name="CountriesList" Width="1300" Height="600" HorizontalAlignment="Center"
+                              VerticalAlignment="Center" IsReadOnly="True" AutoGenerateColumns="False"
+                              Items="{Binding CountriesList}"> 
+                              <!-- DoubleTapped="CountriesListOnDoubleTapped"> -->
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content="Добавить" Width="100" Height="30" HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom" Margin="50" HorizontalContentAlignment="Center"
+                            Command="{Binding AddCountryButtonClick}" />
+                    <Label Name="CountryCheque" Width="500" Height="30" HorizontalAlignment="Center"
+                           VerticalAlignment="Top" Margin="0" HorizontalContentAlignment="Center" BorderBrush="Black"
+                           BorderThickness="1" Content="{Binding CountryCheque}" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
